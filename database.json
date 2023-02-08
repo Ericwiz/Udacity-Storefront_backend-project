@@ -1,0 +1,16 @@
+{
+    "dev": {
+        "driver": "pg",
+        "host": "localhost",
+        "database": "storefront_backend",
+        "password": "Agu.wisdom1",
+        "user": "agu_o_wisdom"
+    },
+    "test": {
+        "driver": "pg",
+        "host": "localhost",
+        "database": "storefront_backend_test",
+        "password": "Agu.wisdom1",
+        "user": "agu_o_wisdom"
+    }
+}

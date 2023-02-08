@@ -1,10 +1,18 @@
 import express, { Request, Response } from 'express'
-import bodyParser from 'body-parser'
+import bodyParser from 'body-parser';
+import cors from "cors";
+
+var corsOptions = {
+    origin: 'http://example.com',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+
 
 const app: express.Application = express()
 const address: string = "0.0.0.0:3000"
 
 app.use(bodyParser.json())
+app.use(cors(corsOptions))
 
 app.get('/', function (req: Request, res: Response) {
     res.send('Hello World!')

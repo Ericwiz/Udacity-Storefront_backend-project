@@ -1,14 +1,14 @@
 {
   "spec_dir": "spec",
   "spec_files": [
-    "../**/tests/*[s]pec.ts"
+    "build/models/tests"
   ],
   "helpers": [
     "helpers/**/*.js"
   ],
   "reporters": [
     {
-      "name": "jasmine-spec-reporter#SpecReporter",
+      "name": "jasmine-spec-reporters",
       "options": {
         "displayStacktrace": "all"
       }
