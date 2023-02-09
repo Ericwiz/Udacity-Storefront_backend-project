@@ -26,7 +26,7 @@ export type User = {
 export class UsersStore {
     async index(): Promise<User[]> {
         try {
-            const sql = ' SELECT * FROM users'
+            const sql = 'SELECT * FROM users'
             // @ts-ignore
             const conn = await client.connect();
             const result = await conn.query(sql);
@@ -39,7 +39,7 @@ export class UsersStore {
 
     async show(id: string): Promise<User> {
         try {
-            const sql = 'SELECT * FROM users where id = ($1)';
+            const sql = 'SELECT * FROM users WHERE id = ($1)';
             // @ts-ignore
             const conn = await client.connect();
             const result = await conn.query(sql, [id]);
@@ -91,4 +91,20 @@ export class UsersStore {
             throw new Error(`Could not update user with id ${u.id}: ${error}`)
         }
     }
+
+    async addProduct(productId: string, quantity: number, userId: string, status: string): Promise<User> {
+        try {
+            const sql = 'INSERT INTO orders (product_id, quantity, user_id, status) VALUES($1, $2, $3, $4) RETURNING *'
+
+            // @ts-ignore
+            const conn = await client.connect();
+            const result = await conn.query(sql, [productId, quantity, userId, status]);
+            conn.release()
+            return result.rows[0]
+        
+        } catch (error) {
+            throw new Error(`Could not add product ${productId} to order r: ${error}`);
+        }
+    }
+
 }

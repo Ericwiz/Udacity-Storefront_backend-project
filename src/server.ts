@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser';
 import cors from "cors";
+import usersRoute from './routes/usersRoute';
+import productRoute from './routes/productRoute';
 
 var corsOptions = {
     origin: 'http://example.com',
@@ -13,9 +15,11 @@ const address: string = "0.0.0.0:3000"
 
 app.use(bodyParser.json())
 app.use(cors(corsOptions))
+app.use('/users', usersRoute)
+app.use('/products', productRoute)
 
-app.get('/', function (req: Request, res: Response) {
-    res.send('Hello World!')
+app.get('/', function (_req: Request, res: Response) {
+    res.send('Welcome to Storefront Backend')
 })
 
 app.listen(3000, function () {
