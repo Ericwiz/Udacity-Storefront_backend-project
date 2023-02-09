@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from "cors";
 import usersRoute from './routes/usersRoute';
 import productRoute from './routes/productRoute';
+import ordersRoute from './routes/ordersRoute';
 
 var corsOptions = {
     origin: 'http://example.com',
@@ -17,6 +18,7 @@ app.use(bodyParser.json())
 app.use(cors(corsOptions))
 app.use('/users', usersRoute)
 app.use('/products', productRoute)
+app.use('/orders', ordersRoute)
 
 app.get('/', function (_req: Request, res: Response) {
     res.send('Welcome to Storefront Backend')
@@ -25,3 +27,5 @@ app.get('/', function (_req: Request, res: Response) {
 app.listen(3000, function () {
     console.log(`starting app on: ${address}`)
 })
+
+export default app;

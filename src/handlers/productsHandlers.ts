@@ -56,4 +56,3 @@ export const verificationToken = async (req: Request, _res: Response, next) => {
         
     }
 }
-
