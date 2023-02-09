@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
-    "test": "db-migrate up -c 4 -e test && jasmine build/models/tests/*.js --random=false ENV=test && db-migrate down -c 4 -e test",
+    "test": "db-migrate up -c 4 -e test && jasmine-ts src/models/tests/*.ts --random=false ENV=test && db-migrate down -c 4 -e test",
     "tsc": "tsc"
   },
   "author": "Agu Obumneme wisdom",
