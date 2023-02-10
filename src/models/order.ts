@@ -4,12 +4,13 @@ import client from "../database";
 export type Order = {
     id?: number,
     product_id: string,
-    quantity: number,
+    quantity?: number,
     user_id: string,
     status: string
 }
 
 export class  ordersQueries{
+    [x: string]: any;
     async currentOrder(userId: string): Promise<Order[]>  {
         try {
             // @ts-ignore
