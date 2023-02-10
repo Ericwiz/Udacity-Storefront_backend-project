@@ -2,15 +2,15 @@
     "dev": {
         "driver": "pg",
         "host": "localhost",
-        "database": "storefront_backend",
-        "password": "Agu.wisdom1",
-        "user": "agu_o_wisdom"
+        "database": {"ENV": "POSTGRES_DB"},
+        "password": {"ENV": "POSTGRES_PASSWORD"},
+        "user": {"ENV": "POSTGRES_USER"}
     },
     "test": {
         "driver": "pg",
         "host": "localhost",
-        "database": "storefront_backend_test",
-        "password": "Agu.wisdom1",
-        "user": "agu_o_wisdom"
+        "database": {"ENV": "POSTGRES_TEST_DB"},
+        "password": {"ENV": "POSTGRES_PASSWORD"},
+        "user": {"ENV": "POSTGRES_USER"}
     }
 }
