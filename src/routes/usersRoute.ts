@@ -6,5 +6,5 @@ const usersRoute = express.Router();
 usersRoute.get('/', verificationToken, usersIndex)
 usersRoute.get('/:id',verificationToken, showUser)
 usersRoute.post('/', createUser)
-usersRoute.post('/:id/orders', verificationToken, addProduct)
+usersRoute.post('/:id/order', verificationToken, addProduct)
 export default usersRoute;
