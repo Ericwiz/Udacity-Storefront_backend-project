@@ -1,54 +1,94 @@
-# Storefront Backend Project
+# STOREFRONT_BACKEND API DOCUMENTATION
 
-## Getting Started
+## Overview
 
-This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
+This API is part of the udacity fullstack Javascript nanodegree projects, it provides a backend for a shopping application with the following features:
 
-## Required Technologies
-Your application must make use of the following libraries:
-- Postgres for the database
-- Node/Express for the application logic
-- dotenv from npm for managing environment variables
-- db-migrate from npm for migrations
-- jsonwebtoken from npm for working with JWTs
-- jasmine from npm for testing
+* User Authentication and Authorization.
+* Management of orders, users and products.
+* CRUD operation for orders, users and products.
 
-## Steps to Completion
+## Technology Stack
 
-### 1. Plan to Meet Requirements
+* Node js.
+* Express.
+* Typescript/Javascript.
+* PostgreSQL.
 
-In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API. 
+## Setting up the development environment
 
-Your first task is to read the requirements and update the document with the following:
-- Determine the RESTful route for each endpoint listed. Add the RESTful route and HTTP verb to the document so that the frontend developer can begin to build their fetch requests.    
-**Example**: A SHOW route: 'blogs/:id' [GET] 
+1. Clone the repository
+2. Install the dependecies by running `yarn install`
+3. Create a `.env` file and set the required environment viarables
+4. Start the application by running `yarn watch`.
 
-- Design the Postgres database tables based off the data shape requirements. Add to the requirements document the database tables and columns being sure to mark foreign keys.   
-**Example**: You can format this however you like but these types of information should be provided
-Table: Books (id:varchar, title:varchar, author:varchar, published_year:varchar, publisher_id:string[foreign key to publishers table], pages:number)
+## API endpoints
 
-**NOTE** It is important to remember that there might not be a one to one ratio between data shapes and database tables. Data shapes only outline the structure of objects being passed between frontend and API, the database may need multiple tables to store a single shape. 
+The API has the following endpoints:
 
-### 2.  DB Creation and Migrations
+### Users
 
-Now that you have the structure of the databse outlined, it is time to create the database and migrations. Add the npm packages dotenv and db-migrate that we used in the course and setup your Postgres database. If you get stuck, you can always revisit the database lesson for a reminder. 
+* `GET /users`: Retrieve a list of all users.
+* `GET /users/:id`: Retrieve a specific user by ID.
+* `POST /users`: Create a new user.
+* `POST /users/:id/orders` Add a product to an order. [Only a user can add a product to an order].
+* `PUT /users/:id`: Update an existing user. [Not Implemented]
+* `DELETE /users/:id`: Delete a user. [Not Implemented].
 
-You must also ensure that any sensitive information is hashed with bcrypt. If any passwords are found in plain text in your application it will not pass.
+### Products
 
-### 3. Models
+* `GET /products`: Retrieve a list of all products.
+* `GET /products/:id`: Retrieve a specific product by ID.
+* `POST /products`: Create a new product [Only a user can create a product].
+* `PUT /products/:id`: Update an existing user. [Not Implemented].
+* `DELETE /products/:id`: Delete a product. [Not Implemented].
 
-Create the models for each database table. The methods in each model should map to the endpoints in `REQUIREMENTS.md`. Remember that these models should all have test suites and mocks.
+### Orders
+* `POST /orders/current_order`: Retrieve the current order/s  [args: user ID].
 
-### 4. Express Handlers
+## Data Models
 
-Set up the Express handlers to route incoming requests to the correct model method. Make sure that the endpoints you create match up with the enpoints listed in `REQUIREMENTS.md`. Endpoints must have tests and be CORS enabled. 
+The API uses the following data models:
 
-### 5. JWTs
+### User
 
-Add JWT functionality as shown in the course. Make sure that JWTs are required for the routes listed in `REQUIUREMENTS.md`.
+* `id`: Unique identifier for the user.
+* `firstname`: User's firstname.
+* `lastname`: User's lastname.
+* `password`: User's password.
 
-### 6. QA and `README.md`
+### Product
 
-Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
+* `id`: Unique identifier for the Product.
+* `name`: Product's name.
+* `price`: Product's price.
+* `category`: Product's category.
 
-Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+### Order
+
+* `id`: Unique identifier for an order.
+* `product_id`: ID of the product to be ordered.
+* `quantity`: Quantity of the product to be ordered.
+* `user_id`: ID of the user who is making the order.
+* `status`: Status of the order, either `complete` or `active`
+
+## Test
+RUN `yarn test`.
+
+## Security
+
+The API uses Bcrypt and Json Web Token (JWT) for Authentication and Authorization.
+
+## License
+
+This API is licensed under the MIT License.
+
+## IMPORTANT NOTE.
+* This project was build according to the project requirements specified by Udacity in the `requirement.md file`.
+
+* A product can be added to the cart with this API route `POST /users/:id/orders` [order a product].
+
+## Scalability
+
+ The API has been built with modularity in mind, making it easier to add additional resources and capabilities as needed.
+
