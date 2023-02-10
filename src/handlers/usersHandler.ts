@@ -34,7 +34,7 @@ export const createUser =async (req: Request, res: Response) => {
     }
     try {
         
-        const myUser = user.createUser(newUser);
+        const myUser = await user.createUser(newUser);
         // @ts-ignore
         const token = jwt.sign({user: myUser}, process.env.TOKEN_SECRET)
         res.json(token)
@@ -58,7 +58,7 @@ export const verificationToken = async (req: Request, _res: Response, next) => {
     }
 }
 
-export const addProduct = async(req: Request, res: Response) => {
+export const addProductToAnOrder = async(req: Request, res: Response) => {
     const quantity: number = parseInt(req.body.quantity)
     const userId: string = req.params.id
     const productId: string = req.body.product_id

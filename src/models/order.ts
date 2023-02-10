@@ -25,17 +25,18 @@ export class  ordersQueries{
         }
     }
 
-    // async ProductWithHighestPriceTag(): Promise<{name: string, price: number}[]>  {
-    //     try {
-    //         // @ts-ignore
-    //     const conn = await client.connect();
-    //     const sql = 'SELECT * FROM products ORDER BY price DESC lIMIT 5';
-    //     const result = await conn.query(sql);
-    //     conn.release();
-    //     return result.rows
-    //     } catch (error) {
-    //         throw new Error(`${error}`);
-            
-    //     }
-    // }
+    async addProduct(quantity: number, orderId: string, productId: string): Promise<Order> {
+        try {
+            const sql = 'INSERT INTO order_products (orderQuantity, product_id, order_id) VALUES($1, $2, $3) RETURNING *'
+
+            // @ts-ignore
+            const conn = await client.connect();
+            const result = await conn.query(sql, [quantity, productId, orderId]);
+            conn.release()
+            return result.rows[0]
+        
+        } catch (error) {
+            throw new Error(`Could not add product ${productId} to order-products: ${error}`);
+        }
+    }
 }

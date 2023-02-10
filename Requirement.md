@@ -29,14 +29,15 @@ This schema will support the following API endpoints:
 
 - POST /users (Will return all users)
 - POST /products (Will return all products)
-- POST /users/:userId/orders (Add a product to the cart/order)
+- POST /users/:userId/orders (order a product) [args: quantity, product_id, status]
+- POST /orders/:id/products [args: orderQuantity, product_id]
+- POST /orders/current_order (Get all active order by a user) [arg: user_id]
 
 ### Get
 - GET /users (Will return all users)
 - GET /products (Will return all products)
-- GET /orders/current_order (Get all active order by a user, taskes arg of user_id)
-- POST /users/:id (get user by id)
-- POST /products/:id (get product by id)
+- GET /users/:id (get user by id)
+- GET /products/:id (get product by id)
 
 
 ## NOTE

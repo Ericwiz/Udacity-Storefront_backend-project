@@ -71,26 +71,26 @@ export class UsersStore {
     }
     }
 
-    async updateUser(u:User): Promise<User> {
-        try {
-            const sql = 'UPDATE users SET (firstname, lastname, password) = ($1, $2, $3) WHERE id = ($4) RETURNING *';
+    // async updateUser(u:User): Promise<User> {
+    //     try {
+    //         const sql = 'UPDATE users SET (firstname, lastname, password) = ($1, $2, $3) WHERE id = ($4) RETURNING *';
 
-            // @ts-ignore
-            const  conn = await client.connect()
-            if(env === "dev") {
-                // @ts-ignore
-                const hash = bcrypt.hashSync(u.password+pepper, parseInt(saltRounds))
-                const result = conn.query(sql, [u.firstname, u.lastname, hash, u.id])
-                conn.release()
-                return result.rows[0]
-            }
-            const result = conn.query(sql, [u.firstname, u.lastname, u.password, u.id])
-            conn.release()
-            return result.rows[0]
-        } catch (error) {
-            throw new Error(`Could not update user with id ${u.id}: ${error}`)
-        }
-    }
+    //         // @ts-ignore
+    //         const  conn = await client.connect()
+    //         if(env === "dev") {
+    //             // @ts-ignore
+    //             const hash = bcrypt.hashSync(u.password+pepper, parseInt(saltRounds))
+    //             const result = conn.query(sql, [u.firstname, u.lastname, hash, u.id])
+    //             conn.release()
+    //             return result.rows[0]
+    //         }
+    //         const result = conn.query(sql, [u.firstname, u.lastname, u.password, u.id])
+    //         conn.release()
+    //         return result.rows[0]
+    //     } catch (error) {
+    //         throw new Error(`Could not update user with id ${u.id}: ${error}`)
+    //     }
+    // }
 
     async addProduct(productId: string, quantity: number, userId: string, status: string): Promise<User> {
         try {

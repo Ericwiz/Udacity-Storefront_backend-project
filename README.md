@@ -73,8 +73,22 @@ The API uses the following data models:
 * `user_id`: ID of the user who is making the order.
 * `status`: Status of the order, either `complete` or `active`
 
+### Order_products
+* `id`: Unique identifier for order_products
+* `product_id`: ID of product in the `order_products table`
+* `order_id`: ID of the order in the order_pruducts table.
+* `orderQuantity`: Quantity of the order in the order_products.  [should match the quantity in the orders table].
+
 ## Test
 RUN `yarn test`.
+
+The `yarn test` command will create the tables then drop the tables after the test
+
+## Migration
+
+* RUN `db-migrate up` to `CREATE` tables [Tables already exists in the database]
+* RUN `db-migrate down` to `DROP` tables [Tables already exists in the database]
+
 
 ## Security
 

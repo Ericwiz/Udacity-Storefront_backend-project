@@ -15,6 +15,20 @@ export const currentOrderByUser = async (req: Request, res:Response) => {
     }
 }
 
+export const addProduct = async(req: Request, res: Response) => {
+    const quantity: number = req.body.orderQuantity
+    const orderId: string = req.params.id
+    const productId: string = req.body.product_id
+
+    try {
+        const addedProduct = await order.addProduct(quantity, orderId, productId)
+        res.json(addedProduct)
+    } catch (error) {
+        res.status(403).json(error)
+        throw new Error(`${error}`)
+    }
+ }
+
 // @ts-ignore
 export const verificationToken = async (req: Request, _res: Response, next) => {
     try {

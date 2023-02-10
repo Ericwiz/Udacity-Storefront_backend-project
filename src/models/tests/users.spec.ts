@@ -60,7 +60,7 @@ describe("Test for all the user models and endpoints", () => {
               const productId = "123";
               const quantity = 10;
               const userId = "1";
-              const status = "pending";
+              const status = "active";
           
               const result = await user.addProduct(productId, quantity, userId, status);
         
@@ -78,7 +78,7 @@ describe("Test for all the user models and endpoints", () => {
               const productId = "";
               const quantity = 10;
               const userId = "1";
-              const status = "pending";
+              const status = "active";
           
               try {
                 await user.addProduct(productId, quantity, userId, status);
